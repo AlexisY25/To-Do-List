@@ -118,3 +118,7 @@ ul li span{
 ul li span:hover{
     background-color: #f3f3f3;
 }
+
+#input-box:focus{
+    outline: none;
+}
