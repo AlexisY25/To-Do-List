@@ -1,43 +1,48 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.container{
+.container {
     min-height: 100vh;
     background: linear-gradient(185deg, #3b3ee3, #045610);
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.todo-app{
+.todo-app {
     width: 100%;
     max-width: 545px;
     background-color: #fff;
-    margin: 100px auto;
     padding: 40px 30px;
     border-radius: 5px;
+    margin: 20px auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
-.todo-app h2{
+.todo-app:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.todo-app h2 {
     color: #002765;
     display: flex;
     align-items: center;
     margin-bottom: 30px;
+    flex-wrap: wrap; /* Para que el texto y la imagen puedan ajustarse en pantallas pequeñas */
 }
 
-.todo-app h2 img{
+.todo-app h2 img {
     width: 35px;
     margin-left: 10px;
-
 }
 
-.todo-app:hover{
-    box-shadow: 1px 2px 2px 3px black;
-}
-
-.row{
+.row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -45,41 +50,47 @@
     border-radius: 10px;
     padding-left: 20px;
     margin-bottom: 25px;
+    gap: 10px; /* Añade un espacio entre el input y el botón */
 }
 
-input{
-    flex: none;
+input {
+    flex: 1; /* El input ocupará todo el espacio disponible */
     border: none;
     background: transparent;
     padding: 10px;
-    font-weight: 14px;
+    font-size: 14px;
+    min-width: 0; /* Aseguramos que el input no se desborde en pantallas pequeñas */
 }
 
-button{
+button {
     border: none;
     outline: none;
-    padding: 16px 50px;
+    padding: 16px 30px; /* Ajuste el padding */
     color: #fff;
     font-size: 16px;
     cursor: pointer;
     background-color: #0a9c11;
     border-radius: 10px;
+    white-space: nowrap; /* Evita que el texto del botón se desborde */
+    flex-shrink: 0; /* Asegura que el botón mantenga su tamaño y no se reduzca */
 }
 
-button:hover{
+
+button:hover {
     background-color: #068051;
 }
 
-ul li{
+ul li {
     list-style: none;
     font-size: 17px;
     padding: 12px 8px 12px 50px;
     user-select: none;
     cursor: pointer;
     position: relative;
+    word-wrap: break-word; /* Para que el texto largo se ajuste */
 }
 
-ul li::before{
+ul li::before {
     content: '';
     position: absolute;
     height: 28px;
@@ -88,21 +99,21 @@ ul li::before{
     background: url(img/unchecked.png);
     background-size: cover;
     background-position: center;
-    top: 8px;   
+    top: 8px;
     left: 16px;
 }
 
-ul li.checked{
+ul li.checked {
     color: #555;
     text-decoration: line-through;
 }
 
-ul li.checked::before{
+ul li.checked::before {
     color: #666;
     background-image: url(img/checked.png);
 }
 
-ul li span{
+ul li span {
     position: absolute;
     right: 0;
     top: 5px;
@@ -115,10 +126,45 @@ ul li span{
     border-radius: 50%;
 }
 
-ul li span:hover{
+ul li span:hover {
     background-color: #f3f3f3;
 }
 
-#input-box:focus{
+#input-box:focus {
     outline: none;
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column; /* Cambia la dirección del input y botón en pantallas más pequeñas */
+        align-items: stretch; /* Los elementos ocuparán todo el ancho disponible */
+        padding: 10px;
+        gap: 15px; /* Más espacio entre el input y el botón */
+    }
+
+    button {
+        padding: 14px 20px; /* Ajustar el tamaño del botón */
+        font-size: 14px;
+    }
+
+    input {
+        font-size: 13px; /* Reducir el tamaño del texto del input */
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .row {
+        gap: 10px; /* Un poco menos de espacio entre input y botón en pantallas muy pequeñas */
+    }
+
+    button {
+        padding: 12px 15px; /* Botón más pequeño en pantallas muy pequeñas */
+        font-size: 12px;
+    }
+
+    input {
+        font-size: 12px; /* Texto más pequeño en el input */
+        padding: 10px;
+    }
 }
